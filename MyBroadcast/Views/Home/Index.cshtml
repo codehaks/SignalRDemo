@@ -14,9 +14,9 @@
     <script>
         var connection = new signalR.HubConnectionBuilder().withUrl("/notifyhub").build();
 
-        connection.on("receiveNotify", function (p) {
+        connection.on("updateProgress", function (p) {
             $("#progress").text(p + "%");
-            console.log(p);
+            //console.log(p);
         });
 
         connection.start();

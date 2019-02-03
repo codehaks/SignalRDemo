@@ -22,7 +22,7 @@ namespace MyBroadcast.Controllers
         {
             for (int i = 0; i < 101; i++)
             {
-                await _hubContext.Clients.All.SendAsync("receiveNotify", i);
+                await _hubContext.Clients.All.SendAsync("updateProgress", i);
                 await Task.Delay(100);
             }
             return Ok("Done");
