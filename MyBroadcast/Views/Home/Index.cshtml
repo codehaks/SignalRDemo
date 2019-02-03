@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<button id="run" class="btn btn-primary"> Run</button>
+
+<h2 id="progress">0%</h2>
+
+@section scripts{
+    <script src="~/lib/signalr/dist/browser/signalr.js"></script>
+
+    <script>
+        var connection = new signalR.HubConnectionBuilder().withUrl("/notifyhub").build();
+
+        connection.on("receiveNotify", function (p) {
+            $("#progress").text(p + "%");
+            console.log(p);
+        });
+
+        connection.start();
+    </script>
+
+    <script>
+        $("#run").click(function () {
+            $.ajax({ url: "/api/progress", method: "GET" })
+                .done(function (data) {
+
+                }).fail(function () {
+
+                });
+        })
+
+    </script>
+
+}
